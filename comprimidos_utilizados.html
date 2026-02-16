@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cálculo de Comprimidos Utilizados</title>
+
+ <link rel="stylesheet" href="css/cputilizados.css">
+</head>
+<body>
+
+  <h1>Cálculo de Comprimidos Utilizados</h1>
+
+  <div class="card">
+    <div class="field">
+      <label>Cartuchos embalados</label>
+      <input type="number" id="cartuchos" placeholder="Ex: 120">
+    </div>
+
+    <div class="field">
+      <label>Amostras</label>
+      <input type="number" id="amostras" placeholder="Ex: 10">
+    </div>
+
+    <div class="field">
+      <label>Blisters adicionais</label>
+      <select id="blistersExtras">
+        <option value="0">0 blisters</option>
+        <option value="30">30 blisters</option>
+        <option value="90">90 blisters</option>
+      </select>
+    </div>
+
+    <div class="resultado">
+      <p><strong>Total de blisters:</strong> <span id="totalBlister">0</span></p>
+      <p><strong>Total de comprimidos utilizados:</strong> <span id="totalComprimidos">0</span></p>
+    </div>
+
+    <button class="btn-voltar"><a href="recon_xantinon.html">← Voltar</a></button> 
+    
+    <button class="btn-voltar"> 
+      <a href="ref_aluminio_xantinon.html">Calcular refugo Alumínio/PVDC</a>
+    </button>
+  </div>
+
+  <script src="js/cputilizado.js"></script>
+
+</body>
+</html>

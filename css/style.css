@@ -1,0 +1,109 @@
+:root {
+  --verde: #2ecc71;
+  --vermelho: #e74c3c;
+  --cinza: #f2f2f2;
+}
+/* html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+} */
+
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 16px;
+  background: #fafafa;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+    margin-top: 2%;
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.tabela {
+
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background: var(--cinza);
+}
+
+input {
+  width: 90px;
+  padding: 6px;
+}
+
+.input-unidade {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.input-unidade span,
+.unidade .medida {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.unidade {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.percentual {
+  font-weight: bold;
+  color: white;
+  border-radius: 6px;
+}
+
+.ok {
+  background: var(--verde);
+}
+
+.alerta {
+  background: var(--vermelho);
+}
+
+
+
+button {
+    margin-bottom: 20px;
+    margin-left: 20px;
+      margin-top: 20px;
+      padding: 12px;
+      font-size: 16px;
+      background: #B02121;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    
+     button:hover {
+      background: #5b1111;
+    }

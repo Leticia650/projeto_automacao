@@ -1,0 +1,112 @@
+:root {
+  --vermelho: #c62828;
+  --vermelho-hover: #a91f1f;
+  --cinza-escuro: #2b2b2b;
+  --cinza-medio: #666;
+  --cinza-claro: #f2f2f2;
+  --branco: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  background: var(--cinza-claro);
+  color: var(--cinza-escuro);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+h2 {
+  text-align: center;
+  font-weight: normal;
+  color: var(--cinza-medio);
+  margin-bottom: 30px;
+}
+
+.grid {
+  max-width: 900px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--branco);
+  padding: 24px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s;
+  border-left: 6px solid var(--vermelho);
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin: 0;
+  color: var(--cinza-medio);
+  font-size: 14px;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.15);
+  border-left-color: var(--vermelho-hover);
+}
+
+.card.destaque {
+  background: linear-gradient(
+    135deg,
+    var(--vermelho),
+    var(--vermelho-hover)
+  );
+  color: var(--branco);
+}
+
+.card.destaque p {
+  color: #f5f5f5;
+}
+
+.card.destaque:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+button {
+      margin-top: 20px;
+      width: 40%;
+      padding: 12px;
+      font-size: 16px;
+      background: #B02121;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    
+     button:hover {
+      background: #5b1111;
+    }
+
+    a{
+        text-decoration: none;
+        color: white;
+    }
+ 
+    a:hover{
+        text-decoration: underline;
+    }
+
+

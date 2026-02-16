@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cálculo Alumínio / PVDC</title>
+
+  <link rel="stylesheet" href="css/style_aluminio.css">
+</head>
+<body>
+
+<button class="btn-voltar" onclick="history.back()">← Voltar</button>
+<div class="box">
+  <div class="container">
+
+  <h1>Reconciliação de Materiais</h1>
+
+  <label>Blisters utilizados</label>
+  <input type="number" id="blisters">
+
+  <h2>Alumínio</h2>
+  <div class="grid">
+    <div>
+      <label>Recebido</label>
+      <input type="number" id="alRecebido">
+
+      <label>Utilizado</label>
+      <input type="number" id="alUtilizado">
+
+      <label>Devolvido</label>
+      <input type="number" id="alDevolvido">
+    </div>
+
+    <div class="resultado">
+      Refugo Alumínio:<br>
+      <span id="alRefugo">0</span>
+    </div>
+  </div>
+
+  <h2>PVDC</h2>
+  <div class="grid">
+    <div>
+      <label>Recebido</label>
+      <input type="number" id="pvdcRecebido">
+
+      <label>Utilizado</label>
+      <input type="number" id="pvdcUtilizado">
+
+      <label>Devolvido</label>
+      <input type="number" id="pvdcDevolvido">
+    </div>
+
+    <div class="resultado">
+      Refugo PVDC:<br>
+      <span id="pvdcRefugo">0</span>
+    </div>
+  </div>
+
+</div>
+
+<script src="script_aluminio.js"></script>
+
+</body>
+</html>

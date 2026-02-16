@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Processo - Blisters</title>
+     <link rel="stylesheet" href="css/ref_aluminio.css">
+</head>
+<body>
+
+<div class="container">
+     <button class="btn-voltar" onclick="history.back()">← Voltar</button>
+    <h2>Cálculo de refugo de Alumino e PVDC Xantinon</h2>
+
+    <div class="main-input-group">
+        <label for="qtdBlisters">Quantidade de Blisters Utilizados</label>
+        <input type="number" id="qtdBlisters" oninput="executarCalculos()" placeholder="0">
+    </div>
+
+    <div class="grid-layout">
+        <div class="material-col">
+            <div class="section-title"><span>Alumínio</span></div>
+            
+            <div class="input-block">
+                <label>Quantidade Recebida</label>
+                <input type="number" id="recAlu" oninput="executarCalculos()" step="0.001">
+            </div>
+
+            <div class="input-block">
+                <label>Quantidade Utilizada (0.0005)</label>
+                <input type="number" id="utilAlu" readonly>
+            </div>
+
+            <div class="input-block">
+                <label>Quantidade Devolvida</label>
+                <input type="number" id="devAlu" oninput="executarCalculos()" step="0.001">
+            </div>
+            
+            <div id="alertAlu" class="alert-box">⚠️ Saldo negativo! Ajuste a devolução.</div>
+        </div>
+
+        <div class="material-col">
+            <div class="section-title"><span>PVDC</span></div>
+            
+            <div class="input-block">
+                <label>Quantidade Recebida</label>
+                <input type="number" id="recPvdc" oninput="executarCalculos()" step="0.001">
+            </div>
+
+            <div class="input-block">
+                <label>Quantidade Utilizada (0.0028)</label>
+                <input type="number" id="utilPvdc" readonly>
+            </div>
+
+            <div class="input-block">
+                <label>Quantidade Devolvida</label>
+                <input type="number" id="devPvdc" oninput="executarCalculos()" step="0.001">
+            </div>
+
+            <div id="alertPvdc" class="alert-box">⚠️ Saldo negativo! Ajuste a devolução.</div>
+        </div>
+    </div>
+
+    <div class="results-panel" id="outputPanel" style="display: none;">
+        <h3 style="margin-top: 0;">Resultados da Operação</h3>
+        <div id="displayCalculosBase"></div>
+        
+        <div class="grid-layout" style="margin-top: 20px;">
+            <div class="suggestion-card">
+                <strong>Ajuste Necessário Alumínio (A):</strong><br>
+                <span id="ajusteAluInfo"></span>
+            </div>
+            <div class="suggestion-card">
+                <strong>Ajuste Necessário PVDC (P):</strong><br>
+                <span id="ajustePvdcInfo"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/ref_aluminio_xantinon.js"></script>
+
+</body>
+</html>

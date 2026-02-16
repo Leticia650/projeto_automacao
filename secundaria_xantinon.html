@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xantinon</title>
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2ecc71">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<button class="btn-voltar" onclick="history.back()">← Voltar</button>
+
+  <h1>Reconciliação - Xantinon</h1>
+
+  <div class="table-container">
+    <table id="tabela">
+      <thead>
+        <tr>
+          <th>Material</th>
+          <th>Qtd. Recebida</th>
+          <th>Qtd. Requisitada</th>
+          <th>Total Recebido</th>
+          <th>Total Utilizado</th>
+          <th>Devolvido</th>
+          <th>Refugo</th>
+          <th>% Limite</th>
+          <th>% Refugo Obtido</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- COMPRIMIDOS -->
+<tr data-limite="2">
+  <td>Comprimidos</td>
+  <td><input type="number"></td>
+  <td><input type="number"></td>
+  <td class="total-recebido"></td>
+  <td><input type="number"></td>
+  <td><input type="number"></td>
+  <td class="refugo"></td>
+  <td>0,00%</td>
+  <td class="percentual"></td>
+</tr>
+
+<!-- ALUMÍNIO -->
+<tr data-limite="2">
+  <td>Alumínio</td>
+  <td><input type="number"></td>
+  <td><input type="number"></td>
+  <td class="total-recebido"></td>
+  <td><input type="number"></td>
+  <td><input type="number"></td>
+  <td class="refugo"></td>
+  <td>5,00%</td>
+  <td class="percentual"></td>
+</tr>
+
+<!-- PVDC -->
+<tr data-limite="2">
+  <td>PVDC</td>
+  <td><input type="number"></td>
+  <td><input type="number"></td>
+  <td class="total-recebido"></td>
+  <td><input type="number"></td>
+  <td><input type="number"></td>
+  <td class="refugo"></td>
+  <td>5,00%</td>
+  <td class="percentual"></td>
+</tr>
+
+
+        <!-- BULA -->
+        <tr data-limite="5">
+          <td>Bula</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="total-recebido"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="refugo"></td>
+          <td>5,00%</td>
+          <td class="percentual"></td>
+        </tr>
+
+        <!-- CARTUCHO -->
+        <tr data-limite="5">
+          <td>Cartucho</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="total-recebido"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="refugo"></td>
+          <td>5,00%</td>
+          <td class="percentual"></td>
+        </tr>
+
+        <!-- CAIXA -->
+        <tr data-limite="2">
+          <td>Caixa</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="total-recebido"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="refugo"></td>
+          <td>2,00%</td>
+          <td class="percentual"></td>
+        </tr>
+
+        <!-- FITA (METROS) -->
+        <tr data-limite="5">
+          <td>Fita</td>
+          <td class="input-unidade">
+            <input type="number" step="0.01">
+            <span>m</span>
+          </td>
+          <td><input type="number"></td>
+          <td class="total-recebido unidade">
+            <span class="valor"></span>
+            <span class="medida">m</span>
+          </td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="refugo"></td>
+          <td>5,00%</td>
+          <td class="percentual"></td>
+        </tr>
+
+        
+
+        <!-- ETIQUETA BRANCA -->
+        <tr data-limite="2">
+          <td>Etiqueta Branca</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="total-recebido"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="refugo"></td>
+          <td>2,00%</td>
+          <td class="percentual"></td>
+        </tr>
+
+        <!-- Pallet -->
+        <tr data-limite="2">
+          <td>Pallet</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="total-recebido"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="refugo"></td>
+          <td>0,00%</td>
+          <td class="percentual"></td>
+        </tr>
+
+
+
+<!-- COLA (KG) -->
+        <tr data-limite="5">
+          <td>Cola</td>
+          <td class="input-unidade">
+            <input type="number" step="0.01">
+            <span>kg</span>
+          </td>
+          <td><input type="number"></td>
+          <td class="total-recebido unidade">
+            <span class="valor"></span>
+            <span class="medida">kg</span>
+          </td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="refugo"></td>
+          <td>0,00%</td>
+          <td class="percentual"></td>
+        </tr>
+
+        
+
+        <!-- Filme -->
+        <tr data-limite="2">
+          <td>Filme</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="total-recebido"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="refugo"></td>
+          <td>0,00%</td>
+          <td class="percentual"></td>
+        </tr>
+
+        
+
+        <!-- Cantoneira 1,00 -->
+        <tr data-limite="2">
+          <td>Cantoneira 1,00</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="total-recebido"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="refugo"></td>
+          <td>0,00%</td>
+          <td class="percentual"></td>
+        </tr>
+
+        
+
+        <!--Cantoneira 1,20 -->
+        <tr data-limite="2">
+          <td>Cantoneira 1,20</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="total-recebido"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="refugo"></td>
+          <td>0,00%</td>
+          <td class="percentual"></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
+
+</body>
+</html>

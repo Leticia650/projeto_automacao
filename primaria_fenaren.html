@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controle de Refugo — Bisnaga</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <h1>Reconciliação Primária — Bisnagas</h1>
+  <button class="btn-voltar" onclick="history.back()">← Voltar</button><br>
+
+
+
+  <div class="table-container">
+    <table id="tabela">
+      <thead>
+        <tr>
+          <th>Material</th>
+          <th>Qtd. Recebida</th>
+          <th>Qtd. Requisitada</th>
+          <th>Total Recebido</th>
+          <th>Total Utilizado</th>
+          <th>Devolvido</th>
+          <th>Refugo</th>
+          <th>% Limite</th>
+          <th>% Refugo Obtido</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr data-limite="5">
+          <td>Bisnaga</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="total-recebido"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td class="refugo"></td>
+          <td>5,00%</td>
+          <td class="percentual"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="script_bisnaga.js"></script>
+
+</body>
+</html>

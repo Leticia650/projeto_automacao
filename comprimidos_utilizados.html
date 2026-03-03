@@ -7,46 +7,66 @@
   <link rel="stylesheet" href="css/cputilizados.css">
 </head>
 <body>
+<div class="container">
+    <h1>Calculadora de Materiais</h1>
 
-  <h1>Cálculo de Comprimidos Utilizados</h1>
-
-  <div class="card">
-    <div class="field">
-      <label>Tipo de Xantinon (Apresentação)</label>
-      <select id="tipoXantinon">
-        <option value="2">Padrão (2 blisters/cartucho)</option>
-        <option value="10">Xantinon 100 cp (10 blisters/cartucho)</option>
-      </select>
+    <div class="nav-menu">
+        <a href="ref_aluminio_xantinon.html" class="btn-nav">Refugo Alu/PVDC (Xantinon c/30)</a>
+        <a href="#" class="btn-nav">Refugo Alginac</a>
+        <a href="#" class="btn-nav">Refugo Vonset</a>
+        <a href="#" class="btn-nav">Refugo Ondansetrona</a>
+        <a href="#" class="btn-nav">Refugo</a>
+        <a href="#" class="btn-nav">Tandriflan</a>
     </div>
 
-    <div class="field">
-      <label>Cartuchos embalados</label>
-      <input type="number" id="cartuchos" placeholder="Ex: 120">
+    <div class="input-field">
+        <label for="produto">Selecione o Produto</label>
+        <select id="produto" onchange="calcular()">
+            <option value="">-- Selecione um item --</option>
+            <option value="2">Xantinon c/ 30 (2 blts x 15 cp)</option>
+            <option value="10">Xantinon c/ 100 (10 blts x 10 cp)</option>
+            <option value="1">Alginac (1 blt x 15 cp)</option>
+            <option value="1">Vonset e Ondansetrona (1 blt x 10 cp)</option>
+            <option value="3">Ondansetrona c/ 30 (3 blts x 10 cp)</option>
+            <option value="1">Tandriflan (1 blt x 15 cp)</option>
+            <option value="2">Tandriflan c/ 30 (2 blts x 15 cp)</option>
+        </select>
     </div>
 
-    <div class="field">
-      <label>Amostras</label>
-      <input type="number" id="amostras" placeholder="Ex: 10">
+    <div class="input-field">
+        <label for="qtdCartuchos">Quantidade de Cartuchos</label>
+        <input type="number" id="qtdCartuchos" placeholder="0" oninput="calcular()">
     </div>
 
-    <div class="field">
-      <label>Blisters adicionais</label>
-      <select id="blistersExtras">
-        <option value="0">0 blisters</option>
-        <option value="30">30 blisters</option>
-        <option value="90">90 blisters</option>
-      </select>
+    <div class="grid-inputs">
+        <div class="input-field">
+            <label>Amostras em Cartucho</label>
+            <input type="number" id="amostraCartucho" placeholder="0" oninput="calcular()">
+        </div>
+        <div class="input-field">
+            <label>Amostras em Blisters</label>
+            <input type="number" id="amostraBlister" placeholder="0" oninput="calcular()">
+        </div>
     </div>
 
-    <div class="resultado">
-      <p><strong>Total de blisters:</strong> <span id="totalBlister">0</span></p>
-      <p><strong>Total de comprimidos utilizados:</strong> <span id="totalComprimidos">0</span></p>
+    <div class="button-group">
+        <button type="button" class="btn btn-clear" onclick="limpar()">🧹 Limpar</button>
+        <a href="recon_xantinon.html" class="btn btn-back">⬅️ Voltar</a>
     </div>
 
-    <button class="btn-voltar"><a href="recon_xantinon.html">← Voltar</a></button>  
-    
-    <button class="btn-voltar"> 
-      <a href="ref_aluminio_xantinon.html">Calcular refugo Alumínio/PVDC</a>
-    </button>
-  </div>
+    <div id="panelResultados" class="result-panel" style="display:none;">
+        <div id="badgeInfo" class="info-badge"></div>
+        
+        <div class="result-item">
+            <span>Total de Cartuchos:</span>
+            <span class="highlight" id="resTotalCartuchos">0</span>
+        </div>
+        <div class="result-item">
+            <span>Total de Blisters Utilizados:</span>
+            <span class="highlight" id="resTotalBlisters">0</span>
+        </div>
+    </div>
+</div>
+
+
   <script src="js/cputilizado.js"></script>

@@ -1,46 +1,33 @@
-const tipoXantinonSelect = document.getElementById("tipoXantinon");
-    const cartuchosInput = document.getElementById("cartuchos");
-    const amostrasInput = document.getElementById("amostras");
-    const blistersExtrasSelect = document.getElementById("blistersExtras");
+ function calcular() {
+        const produtoSelect = document.getElementById('produto');
+        const blistersPorCartucho = parseInt(produtoSelect.value) || 0;
+        
+        const qtdCartuchos = parseInt(document.getElementById('qtdCartuchos').value) || 0;
+        const amostraCartucho = parseInt(document.getElementById('amostraCartucho').value) || 0;
+        const amostraBlister = parseInt(document.getElementById('amostraBlister').value) || 0;
 
-    const totalBlisterSpan = document.getElementById("totalBlister");
-    const totalComprimidosSpan = document.getElementById("totalComprimidos");
+        const panel = document.getElementById('panelResultados');
+        const badge = document.getElementById('badgeInfo');
 
-    function calcular() {
-      const tipo = tipoXantinonSelect.value; 
-      const cartuchos = Number(cartuchosInput.value) || 0;
-      const amostras = Number(amostrasInput.value) || 0;
-      const blistersExtras = Number(blistersExtrasSelect.value);
+        if (blistersPorCartucho === 0 || (qtdCartuchos === 0 && amostraCartucho === 0 && amostraBlister === 0)) {
+            panel.style.display = 'none';
+            return;
+        }
 
-      let fatorBlistersPorCartucho;
-      let fatorComprimidosPorBlister;
+        panel.style.display = 'block';
 
-      // Lógica condicional baseada na sua escolha
-      if (tipo === "10") {
-        // Para Xantinon 100
-        fatorBlistersPorCartucho = 10;
-        fatorComprimidosPorBlister = 10;
-      } else {
-        // Para o Padrão
-        fatorBlistersPorCartucho = 2;
-        fatorComprimidosPorBlister = 15;
-      }
+        const totalCartuchos = qtdCartuchos + amostraCartucho;
+        const totalBlisters = (totalCartuchos * blistersPorCartucho) + amostraBlister;
 
-      // Cálculo dos Blisters
-      const blisterBase = (cartuchos + amostras) * fatorBlistersPorCartucho;
-      const blisterFinal = blisterBase + blistersExtras;
-      
-      // Cálculo dos Comprimidos (usando o fator 10 ou 15 definido acima)
-      const comprimidos = blisterFinal * fatorComprimidosPorBlister;
-
-      totalBlisterSpan.textContent = blisterFinal;
-      totalComprimidosSpan.textContent = comprimidos;
-
-      localStorage.setItem("total_blisters", blisterFinal);
+        badge.innerText = `Padrão: ${blistersPorCartucho} blister(s) por cartucho`;
+        document.getElementById('resTotalCartuchos').innerText = totalCartuchos.toLocaleString('pt-BR');
+        document.getElementById('resTotalBlisters').innerText = totalBlisters.toLocaleString('pt-BR');
     }
 
-    // Listeners
-    tipoXantinonSelect.addEventListener("change", calcular);
-    cartuchosInput.addEventListener("input", calcular);
-    amostrasInput.addEventListener("input", calcular);
-    blistersExtrasSelect.addEventListener("change", calcular);
+    function limpar() {
+        document.getElementById('produto').value = "";
+        document.getElementById('qtdCartuchos').value = "";
+        document.getElementById('amostraCartucho').value = "";
+        document.getElementById('amostraBlister').value = "";
+        document.getElementById('panelResultados').style.display = 'none';
+    }

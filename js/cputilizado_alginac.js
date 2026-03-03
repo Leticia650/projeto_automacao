@@ -1,5 +1,4 @@
-const tipoXantinonSelect = document.getElementById("tipoXantinon");
-    const cartuchosInput = document.getElementById("cartuchos");
+const cartuchosInput = document.getElementById("cartuchos");
     const amostrasInput = document.getElementById("amostras");
     const blistersExtrasSelect = document.getElementById("blistersExtras");
 
@@ -7,40 +6,27 @@ const tipoXantinonSelect = document.getElementById("tipoXantinon");
     const totalComprimidosSpan = document.getElementById("totalComprimidos");
 
     function calcular() {
-      const tipo = tipoXantinonSelect.value; 
       const cartuchos = Number(cartuchosInput.value) || 0;
       const amostras = Number(amostrasInput.value) || 0;
       const blistersExtras = Number(blistersExtrasSelect.value);
 
-      let fatorBlistersPorCartucho;
-      let fatorComprimidosPorBlister;
-
-      // Lógica condicional baseada na sua escolha
-      if (tipo === "10") {
-        // Para Xantinon 100
-        fatorBlistersPorCartucho = 10;
-        fatorComprimidosPorBlister = 10;
-      } else {
-        // Para o Padrão
-        fatorBlistersPorCartucho = 2;
-        fatorComprimidosPorBlister = 15;
-      }
-
-      // Cálculo dos Blisters
-      const blisterBase = (cartuchos + amostras) * fatorBlistersPorCartucho;
+      // (cartuchos + amostras) * 2 para converter em blisters
+      const blisterBase = (cartuchos + amostras) * 1;
+      
+      // Soma a base com o adicional selecionado (0, 30 ou 90)
       const blisterFinal = blisterBase + blistersExtras;
       
-      // Cálculo dos Comprimidos (usando o fator 10 ou 15 definido acima)
-      const comprimidos = blisterFinal * fatorComprimidosPorBlister;
+      // Converte blisters totais para comprimidos (cada blister = 15 unidades)
+      const comprimidos = blisterFinal * 15;
 
       totalBlisterSpan.textContent = blisterFinal;
       totalComprimidosSpan.textContent = comprimidos;
 
+      // Salva no localStorage para a página de refugo ler
       localStorage.setItem("total_blisters", blisterFinal);
     }
 
-    // Listeners
-    tipoXantinonSelect.addEventListener("change", calcular);
+    // Listeners para atualizar o cálculo em tempo real
     cartuchosInput.addEventListener("input", calcular);
     amostrasInput.addEventListener("input", calcular);
     blistersExtrasSelect.addEventListener("change", calcular);

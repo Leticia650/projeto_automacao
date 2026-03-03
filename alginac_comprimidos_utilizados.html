@@ -4,21 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cálculo de Comprimidos Utilizados</title>
-  <link rel="stylesheet" href="css/cputilizados.css">
+
+ <link rel="stylesheet" href="css/cputilizados.css">
 </head>
 <body>
 
   <h1>Cálculo de Comprimidos Utilizados</h1>
 
   <div class="card">
-    <div class="field">
-      <label>Tipo de Xantinon (Apresentação)</label>
-      <select id="tipoXantinon">
-        <option value="2">Padrão (2 blisters/cartucho)</option>
-        <option value="10">Xantinon 100 cp (10 blisters/cartucho)</option>
-      </select>
-    </div>
-
     <div class="field">
       <label>Cartuchos embalados</label>
       <input type="number" id="cartuchos" placeholder="Ex: 120">
@@ -33,8 +26,8 @@
       <label>Blisters adicionais</label>
       <select id="blistersExtras">
         <option value="0">0 blisters</option>
-        <option value="30">30 blisters</option>
-        <option value="90">90 blisters</option>
+        <option value="9">09 blisters</option>
+       
       </select>
     </div>
 
@@ -43,10 +36,14 @@
       <p><strong>Total de comprimidos utilizados:</strong> <span id="totalComprimidos">0</span></p>
     </div>
 
-    <button class="btn-voltar"><a href="recon_xantinon.html">← Voltar</a></button>  
+    <button class="btn-voltar"><a href="alginac.html">← Voltar</a></button> 
     
     <button class="btn-voltar"> 
-      <a href="ref_aluminio_xantinon.html">Calcular refugo Alumínio/PVDC</a>
+      <a href="ref_aluminio_alginac.html">Calcular refugo Alumínio/PVDC</a>
     </button>
   </div>
-  <script src="js/cputilizado.js"></script>
+
+  <script src="js/cputilizado_alginac.js"></script>
+
+</body>
+</html>

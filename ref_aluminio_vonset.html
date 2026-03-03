@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Refugo - Alumínio/Alu-alu</title>
+    <style>
+        :root {
+            --primary-color: #C62828;
+            --primary-light: #FFEBEE;
+            --primary-medium: #E57373;
+            --primary-dark: #8E0000;
+            --bg-color: #F5F5F5;
+            --card-bg: #FFFFFF;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --border-color: #EF9A9A;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 8px solid var(--primary-color);
+        }
+
+        h1 {
+            color: var(--primary-dark);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.6rem;
+        }
+
+        .input-group-main {
+            background-color: var(--primary-light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .grid-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .input-field {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            outline-color: var(--primary-color);
+        }
+
+        input[readonly] {
+            background-color: #F0F0F0;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .btn-clear { background-color: var(--primary-medium); color: white; }
+        .btn-clear:hover { background-color: var(--primary-color); }
+        .btn-back { background-color: #757575; color: white; }
+        .btn-back:hover { background-color: #424242; }
+
+        .result-panel {
+            padding: 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            background-color: #FFF;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .result-box {
+            padding: 15px;
+            border-radius: 6px;
+            background: var(--primary-light);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .summary-total {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+            padding: 10px;
+            background: #ffebee;
+            border-radius: 4px;
+        }
+
+        .highlight {
+            font-size: 1.2rem;
+            display: block;
+            color: var(--primary-dark);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Cálculo de Refugo Alumínio/Alu-alu</h1>
+
+    <div class="input-group-main">
+        <label for="qtdBlisters">TOTAL DE BLISTERS PRODUZIDOS</label>
+        <input type="number" id="qtdBlisters" placeholder="Ex: 1000" oninput="executarCalculos()">
+    </div>
+
+    <form id="calcForm">
+        <div class="grid-inputs">
+            <div class="card">
+                <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--primary-light);">Alumínio</h3>
+                <div class="input-field">
+                    <label>Recebido (kg)</label>
+                    <input type="number" id="recAlu" step="0.0001" oninput="executarCalculos()">
+                </div>
+                <div class="input-field">
+                    <label>Utilizado Padrão (Fixo 0.0004)</label>
+                    <input type="text" id="utilAluPadrao" readonly value="0.000">
+                </div>
+                <div class="input-field">
+                    <label>Devolvido (kg)</label>
+                    <input type="number" id="devAlu" step="0.0001" oninput="executarCalculos()">
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--primary-light);">Alu-alu</h3>
+                <div class="input-field">
+                    <label>Recebido (kg)</label>
+                    <input type="number" id="recAluAlu" step="0.0001" oninput="executarCalculos()">
+                </div>
+                <div class="input-field">
+                    <label>Utilizado Padrão (Fixo 0.0016)</label>
+                    <input type="text" id="utilAluAluPadrao" readonly value="0.000">
+                </div>
+                <div class="input-field">
+                    <label>Devolvido (kg)</label>
+                    <input type="number" id="devAluAlu" step="0.0001" oninput="executarCalculos()">
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="button-group">
+        <button type="button" class="btn btn-clear" onclick="limparFormulario()">🧹 Limpar Formulário</button>
+        <a href="recon_vonset.html" class="btn btn-back">⬅️ Voltar
+        </a>
+    </div>
+
+    <div id="panelResultados" class="result-panel" style="display:none;">
+        <h3 style="margin-top:0; color: var(--primary-dark); text-align: center;">Resultados Ajustados (Base 0.0020)</h3>
+        <div class="result-grid">
+            <div class="summary-total" id="somaRefugosIniciais"></div>
+            
+            <div class="result-box">
+                <strong>Alumínio</strong>
+                <p>Novo Refugo: <span class="highlight" id="resRefAlu">0.000</span></p>
+                <p>Novo Utilizado: <span class="highlight" id="resUtilAlu">0.000</span></p>
+            </div>
+
+            <div class="result-box">
+                <strong>Alu-alu</strong>
+                <p>Novo Refugo: <span class="highlight" id="resRefAluAlu">0.000</span></p>
+                <p>Novo Utilizado: <span class="highlight" id="resUtilAluAlu">0.000</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function arredondar(num) {
+        return Number(Math.round(num + "e3") + "e-3").toFixed(3);
+    }
+
+    function executarCalculos() {
+        const blisters = parseFloat(document.getElementById('qtdBlisters').value) || 0;
+        const recAlu = parseFloat(document.getElementById('recAlu').value) || 0;
+        const devAlu = parseFloat(document.getElementById('devAlu').value) || 0;
+        const recAluAlu = parseFloat(document.getElementById('recAluAlu').value) || 0;
+        const devAluAlu = parseFloat(document.getElementById('devAluAlu').value) || 0;
+
+        const panel = document.getElementById('panelResultados');
+
+        if (blisters <= 0) {
+            panel.style.display = 'none';
+            return;
+        }
+        panel.style.display = 'block';
+
+        // 1. Novos Fatores de Utilizado Padrão (Alu: 0.0004 | Alu-alu: 0.0016)
+        const utilAluPadrao = blisters * 0.0004;
+        const utilAluAluPadrao = blisters * 0.0016;
+
+        document.getElementById('utilAluPadrao').value = arredondar(utilAluPadrao);
+        document.getElementById('utilAluAluPadrao').value = arredondar(utilAluAluPadrao);
+
+        // 2. Cálculo dos Refugos Iniciais
+        const refAluInic = recAlu - utilAluPadrao - devAlu;
+        const refAluAluInic = recAluAlu - utilAluAluPadrao - devAluAlu;
+
+        // 3. Soma dos Refugos
+        const somaRefugos = refAluInic + refAluAluInic;
+        document.getElementById('somaRefugosIniciais').innerText = `Soma dos Refugos: ${arredondar(somaRefugos)} kg`;
+
+        // 4. Novos Refugos Proporcionais (Base Alterada para 0.0020)
+        // Novo Refugo Alu = (Soma * 0.0004) / 0.0020
+        // Novo Refugo Alu-alu = (Soma * 0.0016) / 0.0020
+        const novoRefAlu = (somaRefugos * 0.0004) / 0.0020;
+        const novoRefAluAlu = (somaRefugos * 0.0016) / 0.0020;
+
+        // 5. Novos Utilizados
+        const novoUtilAlu = recAlu - devAlu - novoRefAlu;
+        const novoUtilAluAlu = recAluAlu - devAluAlu - novoRefAluAlu;
+
+        // Exibição nos campos de resultado
+        document.getElementById('resRefAlu').innerText = arredondar(novoRefAlu) + " kg";
+        document.getElementById('resUtilAlu').innerText = arredondar(novoUtilAlu) + " kg";
+        document.getElementById('resRefAluAlu').innerText = arredondar(novoRefAluAlu) + " kg";
+        document.getElementById('resUtilAluAlu').innerText = arredondar(novoUtilAluAlu) + " kg";
+    }
+
+    function limparFormulario() {
+        document.getElementById('calcForm').reset();
+        document.getElementById('qtdBlisters').value = "";
+        document.getElementById('utilAluPadrao').value = "0.000";
+        document.getElementById('utilAluAluPadrao').value = "0.000";
+        document.getElementById('panelResultados').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>

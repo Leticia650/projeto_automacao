@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="css/ref_aluminio.css">
 </head>
 <body>
-
 <div class="container">
-    <h1>Controle de Materiais e Refugo</h1>
+    <h1>Cálculo de Refugo Alumínio/Alu-alu</h1>
 
     <div class="input-group-main">
         <label for="qtdBlisters">TOTAL DE BLISTERS PRODUZIDOS</label>
@@ -22,7 +21,7 @@
                 <h3 class="section-title">Alumínio</h3>
                 <div class="input-field">
                     <label>Recebido (kg)</label>
-                    <input type="number" id="recAlu" step="0.001" placeholder="0.000" oninput="executarCalculos()">
+                    <input type="number" id="recAlu" step="0.0001" placeholder="0.000" oninput="executarCalculos()">
                 </div>
                 <div class="input-field" style="margin-top: 10px;">
                     <label>Utilizado Padrão (Fixo)</label>
@@ -30,23 +29,23 @@
                 </div>
                 <div class="input-field" style="margin-top: 10px;">
                     <label>Devolvido (kg)</label>
-                    <input type="number" id="devAlu" step="0.001" placeholder="0.000" oninput="executarCalculos()">
+                    <input type="number" id="devAlu" step="0.0001" placeholder="0.000" oninput="executarCalculos()">
                 </div>
             </div>
 
             <div class="card">
-                <h3 class="section-title">PVDC</h3>
+                <h3 class="section-title">Alu-alu</h3>
                 <div class="input-field">
                     <label>Recebido (kg)</label>
-                    <input type="number" id="recPvdc" step="0.001" placeholder="0.000" oninput="executarCalculos()">
+                    <input type="number" id="recAluAlu" step="0.0001" placeholder="0.000" oninput="executarCalculos()">
                 </div>
                 <div class="input-field" style="margin-top: 10px;">
                     <label>Utilizado Padrão (Fixo)</label>
-                    <input type="text" id="utilPvdcPadrao" readonly value="0.000">
+                    <input type="text" id="utilAluAluPadrao" readonly value="0.000">
                 </div>
                 <div class="input-field" style="margin-top: 10px;">
                     <label>Devolvido (kg)</label>
-                    <input type="number" id="devPvdc" step="0.001" placeholder="0.000" oninput="executarCalculos()">
+                    <input type="number" id="devAluAlu" step="0.0001" placeholder="0.000" oninput="executarCalculos()">
                 </div>
             </div>
         </div>
@@ -54,11 +53,11 @@
 
     <div class="button-group">
         <button type="button" class="btn btn-clear" onclick="limparFormulario()">🧹 Limpar Formulário</button>
-        <a href="index.html" class="btn btn-back">⬅️ Voltar ao Início</a>
+        <a href="recon_alginac.html" class="btn btn-back">⬅️ Voltar</a>
     </div>
 
     <div id="panelResultados" class="result-panel" style="display:none;">
-        <h3 style="margin-top:0; color: var(--primary-dark);">Resultados do Ajuste Proporcional</h3>
+        <h3 style="margin-top:0; color: var(--primary-dark); text-align: center;">Resultados do Ajuste Proporcional</h3>
         <div class="result-grid">
             <div class="summary-total" id="somaRefugosIniciais"></div>
             
@@ -69,14 +68,14 @@
             </div>
 
             <div class="result-box">
-                <strong>PVDC Ajustado</strong>
-                <p>Novo Refugo: <span class="highlight" id="resRefPvdc">0.000</span></p>
-                <p>Novo Utilizado: <span class="highlight" id="resUtilPvdc">0.000</span></p>
+                <strong>Alu-alu Ajustado</strong>
+                <p>Novo Refugo: <span class="highlight" id="resRefAluAlu">0.000</span></p>
+                <p>Novo Utilizado: <span class="highlight" id="resUtilAluAlu">0.000</span></p>
             </div>
         </div>
     </div>
 </div>
 
-<script src="js/ref_aluminio_xantinon.js"></script>
+<script src="js/ref_aluminio_alginac.js"></script>
 </body>
 </html>

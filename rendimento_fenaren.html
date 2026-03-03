@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Fechamento - Semi Sólidos</title>
+    <style>
+        :root {
+            --primary-color: #C62828;
+            --primary-light: #FF5F52;
+            --primary-dark: #8E0000;
+            --bg-color: #F5F5F5;
+            --card-bg: #FFFFFF;
+            --text-color: #333333;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+            border-top: 8px solid var(--primary-color);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(198, 40, 40, 0.2);
+        }
+
+        .info-box {
+            background-color: #fff8f8;
+            border-left: 4px solid var(--primary-color);
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .result-area {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #eee;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #777;
+            margin-top: 20px;
+        }
+
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
+        
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Cálculo de Rendimento</h2>
+    
+    <div class="info-box">
+        <strong>Perdas Estipuladas:</strong><br>
+        Funil: 4,000kg | Mangueiras: 0,500kg<br>
+        <em>Total fixo: 4,500kg</em>
+    </div>
+
+    <div class="input-group">
+        <label>Peso Recebido das Barricas (kg)</label>
+        <input type="number" id="pesoRecebido" placeholder="Ex: 843.550" step="0.001">
+    </div>
+
+    <div class="input-group">
+        <label>Peso Médio da Bisnaga (g)</label>
+        <input type="number" id="pesoMedio" placeholder="Ex: 62.01" step="0.01">
+    </div>
+
+    <div class="input-group">
+        <label>Unidades de Setup (Perda)</label>
+        <input type="number" id="setupUnidades" value="200">
+    </div>
+
+    <button onclick="calcular()">CALCULAR RENDIMENTO</button>
+
+     <button><a href="recon_fenaren.html">VOLTAR</a></button>
+
+    <div id="resultado" class="result-area" style="display:none;">
+        <div class="result-item">
+            <span>Unidades Teóricas:</span>
+            <span id="unidTeoricas">0</span>
+        </div>
+        <div class="result-item">
+            <span>Unidades Líquidas:</span>
+            <span id="unidLiquidas">0</span>
+        </div>
+        <div class="result-item">
+            <span>Peso Utilizado (C6):</span>
+            <span id="pesoUtilizado">0 kg</span>
+        </div>
+        <div class="result-item">
+            <span>Rendimento Final:</span>
+            <span id="rendimento" class="highlight">0%</span>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        União Química - Setor Semi Sólidos
+    </div>
+</div>
+
+<script>
+    function calcular() {
+        // Coleta de dados
+        const A = parseFloat(document.getElementById('pesoRecebido').value);
+        const B = parseFloat(document.getElementById('pesoMedio').value);
+        const setup = parseFloat(document.getElementById('setupUnidades').value);
+        const F = 4.500; // Perdas esperadas fixas (Funil + Mangueiras)
+
+        if (isNaN(A) || isNaN(B)) {
+            alert("Por favor, preencha o Peso Recebido e o Peso Médio.");
+            return;
+        }
+
+        // 1. Obter valor em unidades (Peso Total / Peso Médio)
+        // Convertendo kg para g para o cálculo de unidades
+        const unidadesBrutas = Math.floor((A * 1000) / B);
+        
+        // 2. Subtrair unidades de Setup
+        const unidadesLiquidas = unidadesBrutas - setup;
+
+        // 3. Obter Peso Utilizado (C6) em Kg
+        const C6 = (unidadesLiquidas * B) / 1000;
+
+        // 4. Cálculo de Rendimento conforme fórmula da imagem: 
+        // C6 / (A - D - F) * 100  --> Considerando Amostra (D) como 0 se não informado
+        const D = 0; 
+        const rendimento = (C6 / (A - D - F)) * 100;
+
+        // Exibir Resultados
+        document.getElementById('unidTeoricas').innerText = unidadesBrutas.toLocaleString();
+        document.getElementById('unidLiquidas').innerText = unidadesLiquidas.toLocaleString();
+        document.getElementById('pesoUtilizado').innerText = C6.toFixed(3) + " kg";
+        document.getElementById('rendimento').innerText = rendimento.toFixed(2) + "%";
+        
+        document.getElementById('resultado').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
